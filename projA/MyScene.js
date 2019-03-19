@@ -22,6 +22,8 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
 
+        this.prism = new MyPrism(this, 10);
+
         //Objects connected to MyInterface
     }
     initLights() {
@@ -35,6 +37,7 @@ class MyScene extends CGFscene {
     }
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
+        this.setAmbient(1, 1, 1, 1.0);
         this.setDiffuse(0.2, 0.4, 0.8, 1.0);
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
@@ -58,7 +61,8 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
-
+        this.prism.display();
+        this.prism.enableNormalViz();
         // ---- END Primitive drawing section
     }
 }
