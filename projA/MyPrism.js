@@ -34,6 +34,7 @@ class MyPrism extends CGFobject {
             /* TEXTURE COORDS */
             this.texCoords.push(0, 1, 1, 1, 0, 0);
             this.texCoords.push(1, 1, 1, 0, 0, 0);
+            // TODO VERIFY THIS!!!!
 
             /* NORMALS */
             // edge1 = (caa - ca, 0 - 0, -saa + sa)
