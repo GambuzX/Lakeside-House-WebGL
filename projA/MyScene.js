@@ -24,6 +24,7 @@ class MyScene extends CGFscene {
 
         this.prism = new MyPrism(this, 10);
         this.cylinder = new MyCylinder(this, 10);
+        this.house = new MyHouse(this);
 
         //Objects connected to MyInterface
     }
@@ -62,8 +63,8 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
-        this.cylinder.display();
-        this.cylinder.enableNormalViz();
+        this.house.display();
+        //this.cylinder.enableNormalViz();
         // ---- END Primitive drawing section
     }
 }
