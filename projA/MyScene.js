@@ -26,6 +26,9 @@ class MyScene extends CGFscene {
         this.cylinder = new MyCylinder(this, 10);
         this.house = new MyHouse(this);
         this.voxelHill = new MyVoxelHill(this, 5);
+        this.tree = new MyTree(this, 5,0.3,3,2, [],[]);
+        this.group = new MyTreeGroupPatch(this, [],[]);
+        this.line = new MyTreeRowPatch(this, [],[]);
 
         //Objects connected to MyInterface
     }
@@ -64,8 +67,6 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
-        this.voxelHill.display();
-        //this.cylinder.enableNormalViz();
         // ---- END Primitive drawing section
     }
 }
