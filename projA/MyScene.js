@@ -21,18 +21,10 @@ class MyScene extends CGFscene {
         this.enableTextures(true);
 
         // Initialize scene objects
-        this.axis = new CGFaxis(this);
+        this.initObjects();
 
-        this.prism = new MyPrism(this, 10);
-        this.cylinder = new MyCylinder(this, 10);
-        this.house = new MyHouse(this);
-        this.voxelHill = new MyVoxelHill(this, 5);
-        this.tree = new MyTree(this, 5, 0.3, 3, 2, [], []);
-        this.group = new MyTreeGroupPatch(this, [], []);
-        this.line = new MyTreeRowPatch(this, [], []);
-        this.skybox = new MyCubeMap(this);
-        this.quad = new MyQuad(this);
-
+        // Initialize materials
+        this.default = new CGFappearance(this);
         this.initTimeOfDayMaterials();
         this.initFloorMaterials();
         // Objects connected to MyInterface
@@ -53,6 +45,16 @@ class MyScene extends CGFscene {
         this.setDiffuse(0.2, 0.4, 0.8, 1.0);
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
+    }
+    initObjects() {
+        this.axis = new CGFaxis(this);
+        this.house = new MyHouse(this);
+        this.voxelHill1 = new MyVoxelHill(this, 4);
+        this.voxelHill2 = new MyVoxelHill(this, 8);
+        this.treesGroup = new MyTreeGroupPatch(this, [], []);
+        this.treesLine = new MyTreeRowPatch(this, [], []);
+        this.skybox = new MyCubeMap(this);
+        this.quad = new MyQuad(this);
     }
     initTimeOfDayMaterials() {
         this.daytimeMat = new CGFappearance(this);
@@ -114,8 +116,10 @@ class MyScene extends CGFscene {
         // Apply default appearance
         this.setDefaultAppearance();
 
-        this.scale(5, 5, 5);
+        this.scale(3, 3, 3);
         // ---- BEGIN Primitive drawing section
+
+        /* Skybox */
         this.pushMatrix();
         this.scale(100, 100, 100);
         this.timeOfDayMaterials[this.selectedTimeDayMaterial].apply();
@@ -124,7 +128,7 @@ class MyScene extends CGFscene {
 
 
         /* Ground */
-        let floor_scale_f = 20;
+        let floor_scale_f = 50;
         this.pushMatrix();
         this.scale(floor_scale_f,0,floor_scale_f);
         this.rotate(-90,1,0,0);
@@ -132,6 +136,58 @@ class MyScene extends CGFscene {
         this.floorMaterials[this.selectedFloorMaterial].apply();
         this.quad.display();
         this.popMatrix();
+
+        /* House */
+        //let house_scale = 1/3;
+        this.pushMatrix();
+        this.default.apply();
+        //this.scale(house_scale, house_scale, house_scale);
+        this.house.display();
+        this.popMatrix();
+
+        /* Voxel Hills */
+        let hill1_scale = 1;
+        this.pushMatrix();
+        this.translate(-10, 0, -10);
+        this.scale(hill1_scale, hill1_scale, hill1_scale);
+        this.voxelHill1.display();
+        this.popMatrix();
+
+        let hill2_scale = 1;
+        this.pushMatrix();
+        this.translate(10, 0, -15);
+        this.scale(hill2_scale, hill2_scale, hill2_scale);
+        this.voxelHill2.display();
+        this.popMatrix();
+
+        /* Tree Groups */
+        this.pushMatrix();
+        this.translate(-12,0,18);
+        this.treesGroup.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(12,0,18);
+        this.rotate(Math.PI/2, 0, 1, 0);
+        this.treesGroup.display();
+        this.popMatrix();
+
+        /* Tree Lines */
+        this.pushMatrix();
+        this.translate(-5,0,10);
+        this.treesLine.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(5,0,10);
+        this.rotate(Math.PI, 0, 1, 0);
+        this.treesLine.display();
+        this.popMatrix();
+
+
+
+
+
         // ---- END Primitive drawing section
     }
 }
