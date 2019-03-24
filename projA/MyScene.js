@@ -33,26 +33,8 @@ class MyScene extends CGFscene {
         this.skybox = new MyCubeMap(this);
         this.quad = new MyQuad(this);
 
-        this.daytimeMat = new CGFappearance(this);
-        this.daytimeMat.setAmbient(1, 1, 1, 1);
-        this.daytimeMat.setDiffuse(0, 0, 0, 1);
-        this.daytimeMat.setSpecular(0, 0, 0, 1);
-        this.daytimeMat.setShininess(1);
-        this.daytimeMat.loadTexture('textures/ely_lakes/daytime.png');
-        this.daytimeMat.setTextureWrap('REPEAT', 'REPEAT');
-
-        this.nightimeMat = new CGFappearance(this);
-        this.nightimeMat.setAmbient(1, 1, 1, 1);
-        this.nightimeMat.setDiffuse(0, 0, 0, 1);
-        this.nightimeMat.setSpecular(0, 0, 0, 1);
-        this.nightimeMat.setShininess(1);
-        this.nightimeMat.loadTexture('textures/ame_nebula/nebula.png');
-        this.nightimeMat.setTextureWrap('REPEAT', 'REPEAT');
-
-        this.materials = [this.daytimeMat, this.nightimeMat];
-        this.selectedMaterial = 0;
-        this.matMapper = {'Day Time' : 0, 'Night Time' : 1};
-
+        this.initTimeOfDayMaterials();
+        this.initFloorMaterials();
         // Objects connected to MyInterface
     }
     initLights() {
@@ -71,6 +53,48 @@ class MyScene extends CGFscene {
         this.setDiffuse(0.2, 0.4, 0.8, 1.0);
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
+    }
+    initTimeOfDayMaterials() {
+        this.daytimeMat = new CGFappearance(this);
+        this.daytimeMat.setAmbient(1, 1, 1, 1);
+        this.daytimeMat.setDiffuse(0, 0, 0, 1);
+        this.daytimeMat.setSpecular(0, 0, 0, 1);
+        this.daytimeMat.setShininess(1);
+        this.daytimeMat.loadTexture('textures/ely_lakes/daytime.png');
+        this.daytimeMat.setTextureWrap('REPEAT', 'REPEAT');
+
+        this.nightimeMat = new CGFappearance(this);
+        this.nightimeMat.setAmbient(1, 1, 1, 1);
+        this.nightimeMat.setDiffuse(0, 0, 0, 1);
+        this.nightimeMat.setSpecular(0, 0, 0, 1);
+        this.nightimeMat.setShininess(1);
+        this.nightimeMat.loadTexture('textures/ame_nebula/nebula.png');
+        this.nightimeMat.setTextureWrap('REPEAT', 'REPEAT');
+
+        this.timeOfDayMaterials = [this.daytimeMat, this.nightimeMat];
+        this.selectedTimeDayMaterial = 0;
+        this.timeDayMatMapper = {'Day Time' : 0, 'Night Time' : 1};
+    }
+    initFloorMaterials() {
+        this.dirtMat = new CGFappearance(this);
+        this.dirtMat.setAmbient(1, 1, 1, 1);
+        this.dirtMat.setDiffuse(0, 0, 0, 1);
+        this.dirtMat.setSpecular(0, 0, 0, 1);
+        this.dirtMat.setShininess(1);
+        this.dirtMat.loadTexture('textures/floor/dirt-texture.jpg');
+        this.dirtMat.setTextureWrap('REPEAT', 'REPEAT');
+
+        this.grassMat = new CGFappearance(this);
+        this.grassMat.setAmbient(1, 1, 1, 1);
+        this.grassMat.setDiffuse(0, 0, 0, 1);
+        this.grassMat.setSpecular(0, 0, 0, 1);
+        this.grassMat.setShininess(1);
+        this.grassMat.loadTexture('textures/floor/grass-texture.jpg');
+        this.grassMat.setTextureWrap('REPEAT', 'REPEAT');
+
+        this.floorMaterials = [this.dirtMat, this.grassMat];
+        this.selectedFloorMaterial = 0;
+        this.floorMatMapper = {'Dirt' : 0, 'Grass' : 1};
     }
     display() {
         // ---- BEGIN Background, camera and axis setup
@@ -94,8 +118,19 @@ class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
         this.pushMatrix();
         this.scale(100, 100, 100);
-        this.materials[this.selectedMaterial].apply();
+        this.timeOfDayMaterials[this.selectedTimeDayMaterial].apply();
         this.skybox.display();
+        this.popMatrix();
+
+
+        /* Ground */
+        let floor_scale_f = 20;
+        this.pushMatrix();
+        this.scale(floor_scale_f,0,floor_scale_f);
+        this.rotate(-90,1,0,0);
+        this.quad.updateTexCoords([0, floor_scale_f, floor_scale_f, floor_scale_f, 0, 0, floor_scale_f, 0]);
+        this.floorMaterials[this.selectedFloorMaterial].apply();
+        this.quad.display();
         this.popMatrix();
         // ---- END Primitive drawing section
     }

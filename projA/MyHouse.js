@@ -99,6 +99,13 @@ class MyHouse extends CGFobject {
 		this.tower_pyramid.display();
 		this.scene.popMatrix();
 
+	}
 
+	enableNormalViz() {
+		this.cube.enableNormalViz();
+		this.unitCube.enableNormalViz();
+		this.pyramid.enableNormalViz();
+		this.tower_pyramid.enableNormalViz();
+		this.prism.enableNormalViz();
 	}
 }

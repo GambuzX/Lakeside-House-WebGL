@@ -32,4 +32,8 @@ class MyVoxelHill extends CGFobject {
 			curr_y += cube_size;
 		}
 	}
+
+	enableNormalViz() {
+		this.cube.enableNormalViz();
+	}
 }

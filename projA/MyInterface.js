@@ -16,7 +16,8 @@ class MyInterface extends CGFinterface {
         
         var obj = this;
 
-        this.gui.add(this.scene, 'selectedMaterial', this.scene.matMapper).name('Time');
+        this.gui.add(this.scene, 'selectedTimeDayMaterial', this.scene.timeDayMatMapper).name('Time');
+        this.gui.add(this.scene, 'selectedFloorMaterial', this.scene.floorMatMapper).name('Floor');
         return true;
     }
 }
