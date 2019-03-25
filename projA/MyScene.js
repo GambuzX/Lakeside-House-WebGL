@@ -27,13 +27,39 @@ class MyScene extends CGFscene {
         this.default = new CGFappearance(this);
         this.initTimeOfDayMaterials();
         this.initFloorMaterials();
+
+        this.selectedTimeDay = 0;
+        this.timeDayMapper = {'Day Time' : 0, 'Night Time' : 1};
         // Objects connected to MyInterface
     }
     initLights() {
-        this.lights[0].setPosition(5, 2, 5, 1);
-        this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
+        /* Ambient light */
+        this.setGlobalAmbientLight(0.1, 0.1, 0.1, 1.0);
+
+        let lights_x = -500;
+        let lights_y = 500;
+        let lights_z = 500;
+        /* Sun */
+        this.lights[0].setPosition(lights_x, lights_y, lights_z, 1);
+        this.lights[0].setDiffuse(1,1,0.4,1); /* Yellow-ish */
+        this.lights[0].setSpecular(1,1,0.4,1); /* Yellow-ish */
+        this.lights[0].setConstantAttenuation(1);
         this.lights[0].enable();
         this.lights[0].update();
+
+        /* Moon */
+        this.lights[1].setPosition(lights_x, lights_y, lights_z, 1);
+        this.lights[1].setDiffuse(0.3,0.3,0.3,1); /* Dark */
+        this.lights[1].setSpecular(0.1,0.1,0.1,1); /* Dark */
+        this.lights[1].setConstantAttenuation(0.8);
+        this.lights[1].disable();
+        this.lights[1].update();
+    }
+    updateTimeDayLight() {
+
+        this.lights[0].disable();
+        this.lights[1].disable();
+        this.lights[this.selectedTimeDay].enable();
     }
     initCameras() {
         this.camera = new CGFcamera(
@@ -73,9 +99,7 @@ class MyScene extends CGFscene {
         this.nightimeMat.loadTexture('textures/ame_nebula/nebula.png');
         this.nightimeMat.setTextureWrap('REPEAT', 'REPEAT');
 
-        this.timeOfDayMaterials = [this.daytimeMat, this.nightimeMat];
-        this.selectedTimeDayMaterial = 0;
-        this.timeDayMatMapper = {'Day Time' : 0, 'Night Time' : 1};
+        this.timeDayMaterials = [this.daytimeMat, this.nightimeMat];
     }
     initFloorMaterials() {
         this.dirtMat = new CGFappearance(this);
@@ -116,13 +140,17 @@ class MyScene extends CGFscene {
         // Apply default appearance
         this.setDefaultAppearance();
 
+        /* Update lights */
+        this.lights[0].update();
+        this.lights[1].update();
+
         this.scale(3, 3, 3);
         // ---- BEGIN Primitive drawing section
 
         /* Skybox */
         this.pushMatrix();
         this.scale(100, 100, 100);
-        this.timeOfDayMaterials[this.selectedTimeDayMaterial].apply();
+        this.timeDayMaterials[this.selectedTimeDay].apply();
         this.skybox.display();
         this.popMatrix();
 
@@ -138,10 +166,10 @@ class MyScene extends CGFscene {
         this.popMatrix();
 
         /* House */
-        //let house_scale = 1/3;
+        let house_scale = 2;
         this.pushMatrix();
         this.default.apply();
-        //this.scale(house_scale, house_scale, house_scale);
+        this.scale(house_scale, house_scale, house_scale);
         this.house.display();
         this.popMatrix();
 
