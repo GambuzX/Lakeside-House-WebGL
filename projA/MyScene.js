@@ -36,30 +36,51 @@ class MyScene extends CGFscene {
         /* Ambient light */
         this.setGlobalAmbientLight(0.1, 0.1, 0.1, 1.0);
 
-        let lights_x = -500;
-        let lights_y = 500;
-        let lights_z = 500;
+        let lights_x = 0;
+        let lights_y = 30;
+        let lights_z = 25;
         /* Sun */
         this.lights[0].setPosition(lights_x, lights_y, lights_z, 1);
-        this.lights[0].setDiffuse(1,1,0.4,1); /* Yellow-ish */
-        this.lights[0].setSpecular(1,1,0.4,1); /* Yellow-ish */
-        this.lights[0].setConstantAttenuation(1);
+        this.lights[0].setDiffuse(1,1,0.2,1); /* Yellow-ish */
+        this.lights[0].setSpecular(1,1,0.2,1); /* Yellow-ish */
+        this.lights[0].setConstantAttenuation(0.2);
         this.lights[0].enable();
         this.lights[0].update();
 
         /* Moon */
         this.lights[1].setPosition(lights_x, lights_y, lights_z, 1);
-        this.lights[1].setDiffuse(0.3,0.3,0.3,1); /* Dark */
-        this.lights[1].setSpecular(0.1,0.1,0.1,1); /* Dark */
-        this.lights[1].setConstantAttenuation(0.8);
+        this.lights[1].setDiffuse(0.2,0.2,0.2,1); /* Dark */
+        this.lights[1].setSpecular(0.2,0.2,0.2,1); /* Dark */
+        this.lights[1].setConstantAttenuation(0.2);
         this.lights[1].disable();
         this.lights[1].update();
+
+        /* Campfire */
+        this.lights[2].setPosition(0, 0.2, 10, 1);
+        this.lights[2].setDiffuse(1,0.25,0,1); /* Orange-ish */
+        this.lights[2].setSpecular(1,0.25,0,1); /* Orange-ish */
+        this.lights[2].setLinearAttenuation(0.05);
+        this.lights[2].disable();
+        this.lights[2].update();
+        //this.lights[2].setVisible(true);
     }
     updateTimeDayLight() {
 
-        this.lights[0].disable();
-        this.lights[1].disable();
-        this.lights[this.selectedTimeDay].enable();
+        if (this.selectedTimeDay == 0) {
+            this.lights[0].disable();
+            this.lights[1].disable();
+            this.lights[2].disable();
+
+            this.lights[0].enable();
+        }
+        else {
+            this.lights[0].disable();
+            this.lights[1].disable();
+            this.lights[2].disable();
+
+            this.lights[1].enable();
+            this.lights[2].enable();
+        }
     }
     initCameras() {
         this.camera = new CGFcamera(
@@ -143,6 +164,7 @@ class MyScene extends CGFscene {
         /* Update lights */
         this.lights[0].update();
         this.lights[1].update();
+        this.lights[2].update();
 
         this.scale(3, 3, 3);
         // ---- BEGIN Primitive drawing section
