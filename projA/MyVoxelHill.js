@@ -3,10 +3,20 @@ class MyVoxelHill extends CGFobject {
 		super(scene);
 		this.height = height;
 		this.cube = new MyUnitCubeQuad(scene);
+
+        this.material = new CGFappearance(scene);
+        this.material.setAmbient(0.3,0.3,0.3);
+        this.material.setDiffuse(1,1,1,1);
+        this.material.setSpecular(0.5,0.5,0.5,1);
+        this.material.setShininess(30);
+        this.material.loadTexture('textures/marble/depositphotos_81756264-stock-photo-white-marble-texture-for-background.jpg');
+        this.material.setTextureWrap('REPEAT', 'REPEAT');
 	}
 
 
 	display() {
+        this.material.apply();
+
 		let cube_size = 1;
 		let curr_y = 0.5;
 		for (let h = this.height - 1; h >= 0; h--) {
@@ -31,6 +41,7 @@ class MyVoxelHill extends CGFobject {
 			}
 			curr_y += cube_size;
 		}
+        this.scene.setDefaultAppearance();
 	}
 
 	enableNormalViz() {
