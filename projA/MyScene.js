@@ -27,6 +27,7 @@ class MyScene extends CGFscene {
         this.default = new CGFappearance(this);
         this.initTimeOfDayMaterials();
         this.initFloorMaterials();
+        this.initRiverMaterials();
 
         this.selectedTimeDay = 0;
         this.timeDayMapper = {'Day Time' : 0, 'Night Time' : 1};
@@ -41,8 +42,8 @@ class MyScene extends CGFscene {
         let lights_z = 25;
         /* Sun */
         this.lights[0].setPosition(lights_x, lights_y, lights_z, 1);
-        this.lights[0].setDiffuse(1,1,0.2,1); /* Yellow-ish */
-        this.lights[0].setSpecular(1,1,0.2,1); /* Yellow-ish */
+        this.lights[0].setDiffuse(1,0.9,0.4,1); /* Orange-ish */
+        this.lights[0].setSpecular(1,0.9,0.4,1); /* Orange-ish */
         this.lights[0].setConstantAttenuation(0.2);
         this.lights[0].enable();
         this.lights[0].update();
@@ -102,6 +103,15 @@ class MyScene extends CGFscene {
         this.treesLine = new MyTreeRowPatch(this, [], []);
         this.skybox = new MyCubeMap(this);
         this.quad = new MyQuad(this);
+
+        this.floor_scale_f = 50;
+        this.floor = new MyQuad(this);
+        this.floor.updateTexCoords([0, this.floor_scale_f, this.floor_scale_f, this.floor_scale_f, 0, 0, this.floor_scale_f, 0]);
+
+        this.river_scale_f = 20;
+        this.river = new MyQuad(this);
+        this.river.updateTexCoords([0, this.river_scale_f, this.river_scale_f, this.river_scale_f, 0, 0, this.river_scale_f, 0]);
+
     }
     initTimeOfDayMaterials() {
         this.daytimeMat = new CGFappearance(this);
@@ -143,6 +153,15 @@ class MyScene extends CGFscene {
         this.selectedFloorMaterial = 0;
         this.floorMatMapper = {'Dirt' : 0, 'Grass' : 1};
     }
+    initRiverMaterials() {
+        this.waterMat = new CGFappearance(this);
+        this.waterMat.setAmbient(0.2, 0.2, 0.2, 1);
+        this.waterMat.setDiffuse(0.2, 0.2, 0.6, 1);
+        this.waterMat.setSpecular(1, 1, 1, 1);
+        this.waterMat.setShininess(5);
+        this.waterMat.loadTexture('textures/river/water.jpg');
+        this.waterMat.setTextureWrap('REPEAT', 'REPEAT');
+    }
     display() {
         // ---- BEGIN Background, camera and axis setup
         // Clear image and depth buffer everytime we update the scene
@@ -178,13 +197,11 @@ class MyScene extends CGFscene {
 
 
         /* Ground */
-        let floor_scale_f = 50;
         this.pushMatrix();
-        this.scale(floor_scale_f,0,floor_scale_f);
+        this.scale(this.floor_scale_f,0,this.floor_scale_f);
         this.rotate(-90,1,0,0);
-        this.quad.updateTexCoords([0, floor_scale_f, floor_scale_f, floor_scale_f, 0, 0, floor_scale_f, 0]);
         this.floorMaterials[this.selectedFloorMaterial].apply();
-        this.quad.display();
+        this.floor.display();
         this.popMatrix();
 
         /* House */
@@ -234,7 +251,14 @@ class MyScene extends CGFscene {
         this.treesLine.display();
         this.popMatrix();
 
-
+        /* River */
+        this.pushMatrix(),
+        this.translate(0,0.1,-5);
+        this.scale(this.river_scale_f, 1, 1);
+        this.rotate(-Math.PI/2, 1, 0, 0);
+        this.waterMat.apply();
+        this.river.display();
+        this.popMatrix();
 
 
 
