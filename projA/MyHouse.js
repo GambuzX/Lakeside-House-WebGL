@@ -6,10 +6,24 @@ class MyHouse extends CGFobject {
 		this.pyramid = new MyPyramid(scene, 4, 1);
 		this.tower_pyramid = new MyPyramid(scene, 10, 1);
 		this.prism = new MyPrism(scene, 10);
+		this.initHouseMaterials();
 	}
 
 
+    initHouseMaterials() {
+        this.wallMat = new CGFappearance(this.scene);
+        this.wallMat.setAmbient(0.1, 0.1, 0.1, 1);
+        this.wallMat.setDiffuse(1, 1, 1, 1);
+        this.wallMat.setSpecular(0, 0, 0, 1);
+        this.wallMat.setShininess(1);
+        this.wallMat.loadTexture('textures/house/brick_wall.jpg');
+        this.wallMat.setTextureWrap('REPEAT', 'REPEAT');
+    }
+
+
 	display() {
+		
+		this.wallMat.apply();
 
 		/* Main building */
 		let main_b_size = 1;
