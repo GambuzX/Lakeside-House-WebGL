@@ -53,8 +53,8 @@ class MyScene extends CGFscene {
 
         /* Moon */
         this.lights[1].setPosition(lights_x, lights_y, lights_z, 1);
-        this.lights[1].setDiffuse(0.2,0.2,0.2,1); /* Dark */
-        this.lights[1].setSpecular(0.2,0.2,0.2,1); /* Dark */
+        this.lights[1].setDiffuse(0.1,0.1,0.1,1); /* Dark */
+        this.lights[1].setSpecular(0.1,0.1,0.1,1); /* Dark */
         this.lights[1].setConstantAttenuation(0.2);
         this.lights[1].disable();
         this.lights[1].update();
@@ -112,9 +112,10 @@ class MyScene extends CGFscene {
         this.floor = new MyQuad(this);
         this.floor.updateTexCoords([0, this.floor_scale_f, this.floor_scale_f, this.floor_scale_f, 0, 0, this.floor_scale_f, 0]);
 
-        this.river_scale_f = 20;
+        this.river_scale_l = 20;
+        this.river_scale_w = 3;
         this.river = new MyQuad(this);
-        this.river.updateTexCoords([0, this.river_scale_f, this.river_scale_f, this.river_scale_f, 0, 0, this.river_scale_f, 0]);
+        this.river.updateTexCoords([0, this.river_scale_w, this.river_scale_l, this.river_scale_w, 0, 0, this.river_scale_l, 0 ]);
 
     }
     initTimeOfDayMaterials() {
@@ -138,16 +139,16 @@ class MyScene extends CGFscene {
     }
     initFloorMaterials() {
         this.dirtMat = new CGFappearance(this);
-        this.dirtMat.setAmbient(1, 1, 1, 1);
-        this.dirtMat.setDiffuse(0, 0, 0, 1);
+        this.dirtMat.setAmbient(0.1, 0.1, 0.1, 1);
+        this.dirtMat.setDiffuse(0.8, 0.8, 0.8, 1);
         this.dirtMat.setSpecular(0, 0, 0, 1);
         this.dirtMat.setShininess(1);
         this.dirtMat.loadTexture('textures/floor/dirt-texture.jpg');
         this.dirtMat.setTextureWrap('REPEAT', 'REPEAT');
 
         this.grassMat = new CGFappearance(this);
-        this.grassMat.setAmbient(1, 1, 1, 1);
-        this.grassMat.setDiffuse(0, 0, 0, 1);
+        this.grassMat.setAmbient(0.1, 0.1, 0.1, 1);
+        this.grassMat.setDiffuse(0.8, 0.8, 0.8, 1);
         this.grassMat.setSpecular(0, 0, 0, 1);
         this.grassMat.setShininess(1);
         this.grassMat.loadTexture('textures/floor/grass-texture.jpg');
@@ -262,8 +263,8 @@ class MyScene extends CGFscene {
         /* River */
         this.pushMatrix(),
         this.translate(0,0.1,-5);
-        this.scale(this.river_scale_f, 1, 1);
         this.rotate(-Math.PI/2, 1, 0, 0);
+        this.scale(this.river_scale_l, 1, this.river_scale_w);
         if (this.applyTextures) this.waterMat.apply();
         this.river.display();
         this.popMatrix();

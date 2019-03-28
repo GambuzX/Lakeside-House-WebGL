@@ -9,13 +9,13 @@ class MyVoxelHill extends CGFobject {
         this.material.setDiffuse(1,1,1,1);
         this.material.setSpecular(0.5,0.5,0.5,1);
         this.material.setShininess(30);
-        this.material.loadTexture('textures/marble/depositphotos_81756264-stock-photo-white-marble-texture-for-background.jpg');
+        this.material.loadTexture('textures/marble/marble.jpg');
         this.material.setTextureWrap('REPEAT', 'REPEAT');
 	}
 
 
 	display() {
-        this.material.apply();
+        if (this.scene.applyTextures) this.material.apply();
 
 		let cube_size = 1;
 		let curr_y = 0.5;
