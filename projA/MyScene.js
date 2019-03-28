@@ -32,6 +32,7 @@ class MyScene extends CGFscene {
         this.selectedTimeDay = 0;
         this.timeDayMapper = {'Day Time' : 0, 'Night Time' : 1};
         // Objects connected to MyInterface
+        this.applyTextures = true;
     }
     initLights() {
         /* Ambient light */
@@ -193,7 +194,7 @@ class MyScene extends CGFscene {
             this.translate(0,20,0);
         }
         this.scale(100, 100, 100);
-        this.timeDayMaterials[this.selectedTimeDay].apply();
+        if (this.applyTextures) this.timeDayMaterials[this.selectedTimeDay].apply();
         this.skybox.display();
         this.popMatrix();
 
@@ -201,7 +202,7 @@ class MyScene extends CGFscene {
         this.pushMatrix();
         this.scale(this.floor_scale_f,0,this.floor_scale_f);
         this.rotate(-90,1,0,0);
-        this.floorMaterials[this.selectedFloorMaterial].apply();
+        if (this.applyTextures) this.floorMaterials[this.selectedFloorMaterial].apply();
         this.floor.display();
         this.popMatrix();
 
@@ -259,7 +260,7 @@ class MyScene extends CGFscene {
         this.translate(0,0.1,-5);
         this.scale(this.river_scale_f, 1, 1);
         this.rotate(-Math.PI/2, 1, 0, 0);
-        this.waterMat.apply();
+        if (this.applyTextures) this.waterMat.apply();
         this.river.display();
         this.popMatrix();
 

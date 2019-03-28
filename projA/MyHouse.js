@@ -22,8 +22,8 @@ class MyHouse extends CGFobject {
 
 
 	display() {
-		
-		this.wallMat.apply();
+
+		if (this.scene.applyTextures) this.wallMat.apply();
 
 		/* Main building */
 		let main_b_size = 1;

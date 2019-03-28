@@ -18,6 +18,8 @@ class MyInterface extends CGFinterface {
 
         this.gui.add(this.scene, 'selectedTimeDay', this.scene.timeDayMapper).name('Time').onChange(this.scene.updateTimeDayLight.bind(this.scene));;
         this.gui.add(this.scene, 'selectedFloorMaterial', this.scene.floorMatMapper).name('Floor');
+
+        this.gui.add(this.scene, 'applyTextures').name('Apply Textures');
         return true;
     }
 }
