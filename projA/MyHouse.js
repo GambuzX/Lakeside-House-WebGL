@@ -7,6 +7,7 @@ class MyHouse extends CGFobject {
 		this.tower_pyramid = new MyPyramid(scene, 10, 1);
 		this.prism = new MyPrism(scene, 10);
 		this.initHouseMaterials();
+
 	}
 
 
@@ -18,6 +19,14 @@ class MyHouse extends CGFobject {
         this.wallMat.setShininess(1);
         this.wallMat.loadTexture('textures/house/brick_wall.jpg');
         this.wallMat.setTextureWrap('REPEAT', 'REPEAT');
+
+        this.roofMaterial = new CGFappearance(scene);
+        this.roofMaterial.setAmbient(scene.ambientLight, scene.ambientLight, scene.ambientLight, 1);
+        this.roofMaterial.setDiffuse(1, 1, 1, 1);
+        this.roofMaterial.setSpecular(0.5, 0.5, 0.5, 1);
+        this.roofMaterial.setShininess(5);
+        this.roofMaterial.loadTexture('textures/house/rooftiles.png');
+        this.roofMaterial.setTextureWrap('REPEAT', 'REPEAT');
     }
 
 
@@ -37,8 +46,10 @@ class MyHouse extends CGFobject {
 		this.scene.translate(0,1,0);
 		this.scene.rotate(Math.PI/4, 0, 1, 0);
 		this.scene.scale(1/Math.sqrt(2), 1, 1/Math.sqrt(2));
+        this.roofMaterial.apply();
 		this.pyramid.display();
 		this.scene.popMatrix();
+        this.wallMat.apply();
 
 		/* Front cover */
 		let cover_y_size = 0.1;
@@ -103,6 +114,7 @@ class MyHouse extends CGFobject {
 		this.scene.pushMatrix();
 		this.scene.translate(main_b_size/2 + side_b_x_size - tower_radius, side_b_y_size + tower_y_size, 0);
 		this.scene.scale(tower_top_radius, 1, tower_top_radius);
+        this.roofMaterial.apply();
 		this.tower_pyramid.display();
 		this.scene.popMatrix();
 
@@ -110,9 +122,11 @@ class MyHouse extends CGFobject {
 		this.scene.pushMatrix();
 		this.scene.translate(-(main_b_size/2 + side_b_x_size - tower_radius), side_b_y_size + tower_y_size, 0);
 		this.scene.scale(tower_top_radius, 1, tower_top_radius);
+        this.roofMaterial.apply();
 		this.tower_pyramid.display();
 		this.scene.popMatrix();
 
+        this.scene.setDefaultAppearance();
 	}
 
 	enableNormalViz() {

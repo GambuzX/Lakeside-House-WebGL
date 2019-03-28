@@ -20,6 +20,8 @@ class MyScene extends CGFscene {
         this.gl.depthFunc(this.gl.LEQUAL);
         this.enableTextures(true);
 
+        this.ambientLight = 0.3;
+
         // Initialize scene objects
         this.initObjects();
 
@@ -93,6 +95,7 @@ class MyScene extends CGFscene {
         this.setDiffuse(1, 1, 1, 1.0);
         this.setSpecular(1, 1, 1, 1.0);
         this.setShininess(10.0);
+        this.activeTexture = 0;
     }
     initObjects() {
         this.axis = new CGFaxis(this);
@@ -175,7 +178,7 @@ class MyScene extends CGFscene {
         this.applyViewMatrix();
 
         // Draw axis
-        this.axis.display();
+        //this.axis.display();
 
         // Apply default appearance
         this.setDefaultAppearance();
@@ -229,6 +232,7 @@ class MyScene extends CGFscene {
         this.scale(hill2_scale, hill2_scale, hill2_scale);
         this.voxelHill2.display();
         this.popMatrix();
+
 
         /* Tree Groups */
         this.pushMatrix();
