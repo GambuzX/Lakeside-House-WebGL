@@ -35,11 +35,11 @@ class MyScene extends CGFscene {
     }
     initLights() {
         /* Ambient light */
-        this.setGlobalAmbientLight(0.1, 0.1, 0.1, 1.0);
+        this.setGlobalAmbientLight(0.3, 0.3, 0.3, 1.0);
 
-        let lights_x = 0;
-        let lights_y = 30;
-        let lights_z = 25;
+        let lights_x = 500;
+        let lights_y = 500;
+        let lights_z = -500;
         /* Sun */
         this.lights[0].setPosition(lights_x, lights_y, lights_z, 1);
         this.lights[0].setDiffuse(1,0.9,0.4,1); /* Orange-ish */
@@ -89,9 +89,9 @@ class MyScene extends CGFscene {
             vec3.fromValues(0, 0, 0));
     }
     setDefaultAppearance() {
-        this.setAmbient(0.2, 0.4, 0.8, 1.0);
-        this.setDiffuse(0.2, 0.4, 0.8, 1.0);
-        this.setSpecular(0.2, 0.4, 0.8, 1.0);
+        this.setAmbient(0.6, 0.6, 0.6, 1.0);
+        this.setDiffuse(1, 1, 1, 1.0);
+        this.setSpecular(1, 1, 1, 1.0);
         this.setShininess(10.0);
     }
     initObjects() {
@@ -185,16 +185,17 @@ class MyScene extends CGFscene {
         this.lights[1].update();
         this.lights[2].update();
 
-        this.scale(3, 3, 3);
         // ---- BEGIN Primitive drawing section
 
         /* Skybox */
         this.pushMatrix();
+        if (this.selectedTimeDay == 0) {
+            this.translate(0,20,0);
+        }
         this.scale(100, 100, 100);
         this.timeDayMaterials[this.selectedTimeDay].apply();
         this.skybox.display();
         this.popMatrix();
-
 
         /* Ground */
         this.pushMatrix();
@@ -203,6 +204,8 @@ class MyScene extends CGFscene {
         this.floorMaterials[this.selectedFloorMaterial].apply();
         this.floor.display();
         this.popMatrix();
+
+        this.setDefaultAppearance();
 
         /* House */
         let house_scale = 2;
