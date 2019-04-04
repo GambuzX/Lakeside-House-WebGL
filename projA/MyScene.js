@@ -169,6 +169,9 @@ class MyScene extends CGFscene {
         this.waterMat.loadTexture('textures/river/water.jpg');
         this.waterMat.setTextureWrap('REPEAT', 'REPEAT');
     }
+    updateEnableTextures(){
+        this.enableTextures(this.applyTextures);
+    }
     display() {
         // ---- BEGIN Background, camera and axis setup
         // Clear image and depth buffer everytime we update the scene
@@ -200,7 +203,7 @@ class MyScene extends CGFscene {
             this.translate(0,20,0);
         }
         this.scale(100, 100, 100);
-        if (this.applyTextures) this.timeDayMaterials[this.selectedTimeDay].apply();
+        this.timeDayMaterials[this.selectedTimeDay].apply();
         this.skybox.display();
         this.popMatrix();
 
@@ -208,7 +211,7 @@ class MyScene extends CGFscene {
         this.pushMatrix();
         this.scale(this.floor_scale_f,1,this.floor_scale_f);
         this.rotate(-90,1,0,0);
-        if (this.applyTextures) this.floorMaterials[this.selectedFloorMaterial].apply();
+        this.floorMaterials[this.selectedFloorMaterial].apply();
         this.floor.display();
         this.popMatrix();
 
@@ -267,7 +270,7 @@ class MyScene extends CGFscene {
         this.translate(0,0.1,-4);
         this.rotate(-Math.PI/2, 1, 0, 0);
         this.scale(this.river_scale_l, this.river_scale_w, 1);
-        if (this.applyTextures) this.waterMat.apply();
+        this.waterMat.apply();
         this.river.display();
         this.popMatrix();
 

@@ -32,7 +32,7 @@ class MyHouse extends CGFobject {
 
 	display() {
 
-		if (this.scene.applyTextures) this.wallMat.apply();
+		this.wallMat.apply();
 
 		/* Main building */
 		let main_b_size = 1;
@@ -46,11 +46,11 @@ class MyHouse extends CGFobject {
 		this.scene.translate(0,1,0);
 		this.scene.rotate(Math.PI/4, 0, 1, 0);
 		this.scene.scale(1/Math.sqrt(2), 1, 1/Math.sqrt(2));
-        if (this.scene.applyTextures) this.roofMaterial.apply();
+        this.roofMaterial.apply();
 		this.pyramid.display();
 		this.scene.popMatrix();
 		
-        if (this.scene.applyTextures) this.wallMat.apply();
+        this.wallMat.apply();
 
 		/* Front cover */
 		let cover_y_size = 0.1;
@@ -115,7 +115,7 @@ class MyHouse extends CGFobject {
 		this.scene.pushMatrix();
 		this.scene.translate(main_b_size/2 + side_b_x_size - tower_radius, side_b_y_size + tower_y_size, 0);
 		this.scene.scale(tower_top_radius, 1, tower_top_radius);
-        if (this.scene.applyTextures) this.roofMaterial.apply();
+        this.roofMaterial.apply();
 		this.tower_pyramid.display();
 		this.scene.popMatrix();
 
@@ -123,7 +123,7 @@ class MyHouse extends CGFobject {
 		this.scene.pushMatrix();
 		this.scene.translate(-(main_b_size/2 + side_b_x_size - tower_radius), side_b_y_size + tower_y_size, 0);
 		this.scene.scale(tower_top_radius, 1, tower_top_radius);
-        if (this.scene.applyTextures) this.roofMaterial.apply();
+        this.roofMaterial.apply();
 		this.tower_pyramid.display();
 		this.scene.popMatrix();
 
