@@ -15,7 +15,7 @@ class MyVoxelHill extends CGFobject {
 
 
 	display() {
-        if (this.scene.applyTextures) this.material.apply();
+        this.material.apply();
 
 		let cube_size = 1;
 		let curr_y = 0.5;

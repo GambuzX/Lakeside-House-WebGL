@@ -61,13 +61,14 @@ class MyScene extends CGFscene {
         this.lights[1].update();
 
         /* Campfire */
-        this.lights[2].setPosition(0, 0.2, 10, 1);
+        this.campfire_z = 5;
+        this.campfire_y = 1;
+        this.lights[2].setPosition(0, this.campfire_y, this.campfire_z, 1);
         this.lights[2].setDiffuse(1,0.25,0,1); /* Orange-ish */
         this.lights[2].setSpecular(1,0.25,0,1); /* Orange-ish */
         this.lights[2].setLinearAttenuation(0.05);
         this.lights[2].disable();
         this.lights[2].update();
-        //this.lights[2].setVisible(true);
     }
     updateTimeDayLight() {
 
@@ -108,13 +109,14 @@ class MyScene extends CGFscene {
         this.treesLine = new MyTreeRowPatch(this, [], []);
         this.skybox = new MyCubeMap(this);
         this.quad = new MyQuad(this);
+        this.campfire = new MyCampfire(this);
 
         this.floor_scale_f = 50;
         this.floor = new MyQuad(this);
         this.floor.updateTexCoords([0, this.floor_scale_f, this.floor_scale_f, this.floor_scale_f, 0, 0, this.floor_scale_f, 0]);
 
-        this.river_scale_l = 20;
-        this.river_scale_w = 3;
+        this.river_scale_l = this.floor_scale_f;
+        this.river_scale_w = 4;
         this.river = new MyQuad(this);
         this.river.updateTexCoords([0, this.river_scale_w, this.river_scale_l, this.river_scale_w, 0, 0, this.river_scale_l, 0 ]);
 
@@ -168,6 +170,9 @@ class MyScene extends CGFscene {
         this.waterMat.loadTexture('textures/river/water.jpg');
         this.waterMat.setTextureWrap('REPEAT', 'REPEAT');
     }
+    updateEnableTextures(){
+        this.enableTextures(this.applyTextures);
+    }
     display() {
         // ---- BEGIN Background, camera and axis setup
         // Clear image and depth buffer everytime we update the scene
@@ -201,7 +206,7 @@ class MyScene extends CGFscene {
             this.translate(0,20,0);
         }
         this.scale(100, 100, 100);
-        if (this.applyTextures) this.timeDayMaterials[this.selectedTimeDay].apply();
+        this.timeDayMaterials[this.selectedTimeDay].apply();
         this.skybox.display();
         this.popMatrix();
 
@@ -209,7 +214,7 @@ class MyScene extends CGFscene {
         this.pushMatrix();
         this.scale(this.floor_scale_f,1,this.floor_scale_f);
         this.rotate(-90,1,0,0);
-        if (this.applyTextures) this.floorMaterials[this.selectedFloorMaterial].apply();
+        this.floorMaterials[this.selectedFloorMaterial].apply();
         this.floor.display();
         this.popMatrix();
 
@@ -265,14 +270,18 @@ class MyScene extends CGFscene {
 
         /* River */
         this.pushMatrix(),
-        this.translate(0,0.1,-5);
+        this.translate(0,0.1,-4);
         this.rotate(-Math.PI/2, 1, 0, 0);
-        this.scale(this.river_scale_l, 1, this.river_scale_w);
-        if (this.applyTextures) this.waterMat.apply();
+        this.scale(this.river_scale_l, this.river_scale_w, 1);
+        this.waterMat.apply();
         this.river.display();
         this.popMatrix();
 
-
+        /* Campfire */
+        this.pushMatrix();
+        this.translate(0, 0.2, this.campfire_z);
+        this.campfire.display();
+        this.popMatrix();
 
         // ---- END Primitive drawing section
     }
