@@ -13,6 +13,7 @@ class MyScene extends CGFscene {
 
         // Background color
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
+        this.zoom = 0.25;
 
         this.gl.clearDepth(100.0);
         this.gl.enable(this.gl.DEPTH_TEST);
@@ -191,6 +192,8 @@ class MyScene extends CGFscene {
         this.lights[2].update();
 
         // ---- BEGIN Primitive drawing section
+        
+        this.scale(this.zoom, this.zoom, this.zoom);
 
         /* Skybox */
         this.pushMatrix();
