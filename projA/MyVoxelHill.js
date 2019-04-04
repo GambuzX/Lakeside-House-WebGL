@@ -5,9 +5,9 @@ class MyVoxelHill extends CGFobject {
 		this.cube = new MyUnitCubeQuad(scene);
 
         this.material = new CGFappearance(scene);
-        this.material.setAmbient(0.3,0.3,0.3);
+        this.material.setAmbient(scene.ambientLight,scene.ambientLight,scene.ambientLight, 1);
         this.material.setDiffuse(1,1,1,1);
-        this.material.setSpecular(0.5,0.5,0.5,1);
+        this.material.setSpecular(1,1,1,1);
         this.material.setShininess(30);
         this.material.loadTexture('textures/marble/marble.jpg');
         this.material.setTextureWrap('REPEAT', 'REPEAT');

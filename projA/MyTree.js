@@ -15,7 +15,7 @@ class MyTree extends CGFobject {
 
     initTreeMaterials() {
         this.trunkMat = new CGFappearance(this.scene);
-        this.trunkMat.setAmbient(0.1, 0.1, 0.1, 1);
+        this.trunkMat.setAmbient(this.scene.ambientLight, this.scene.ambientLight, this.scene.ambientLight, 1);
         this.trunkMat.setDiffuse(1, 1, 1, 1);
         this.trunkMat.setSpecular(0, 0, 0, 1);
         this.trunkMat.setShininess(1);
@@ -23,7 +23,7 @@ class MyTree extends CGFobject {
         this.trunkMat.setTextureWrap('REPEAT', 'REPEAT');
 
         this.leavesMat = new CGFappearance(this.scene);
-        this.leavesMat.setAmbient(0.1, 0.1, 0.1, 1);
+        this.leavesMat.setAmbient(this.scene.ambientLight, this.scene.ambientLight, this.scene.ambientLight, 1);
         this.leavesMat.setDiffuse(1, 1, 1, 1);
         this.leavesMat.setSpecular(0, 0, 0, 1);
         this.leavesMat.setShininess(1);

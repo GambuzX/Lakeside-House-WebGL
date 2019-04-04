@@ -8,30 +8,6 @@ class MyUnitCubeQuad extends CGFobject {
 		this.myQuad = new MyQuad(scene);
 	}
 
-/*
-	initTextures() {
-		this.mine = new CGFappearance(this.scene);
-        this.mine.setAmbient(0.1, 0.1, 0.1, 1);
-        this.mine.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.mine.setSpecular(0.1, 0.1, 0.1, 1);
-        this.mine.setShininess(10.0);
-        this.mine.loadTexture('images/mineSide.png');
-        this.mine.setTextureWrap('REPEAT', 'REPEAT');
-
-        this.textureTop = new CGFtexture(this.scene,'images/mineTop.png');
-        this.textureBottom = new CGFtexture(this.scene,'images/mineBottom.png');
-        this.textureSide = new CGFtexture(this.scene,'images/mineSide.png');
-	}
-	setMineSide() {
-		this.mine.setTexture(this.textureSide);
-	}
-	setMineTop() {
-		this.mine.setTexture(this.textureTop);
-	}
-	setMineBottom() {
-		this.mine.setTexture(this.textureBottom);
-	}*/
-
 	display() {
 		//this.setMineSide();
 		//this.mine.apply();

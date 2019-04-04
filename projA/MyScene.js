@@ -92,7 +92,7 @@ class MyScene extends CGFscene {
             vec3.fromValues(0, 0, 0));
     }
     setDefaultAppearance() {
-        this.setAmbient(0.6, 0.6, 0.6, 1.0);
+        this.setAmbient(this.ambientLight, this.ambientLight,this.ambientLight, 1);
         this.setDiffuse(1, 1, 1, 1.0);
         this.setSpecular(1, 1, 1, 1.0);
         this.setShininess(10.0);
@@ -160,7 +160,7 @@ class MyScene extends CGFscene {
     }
     initRiverMaterials() {
         this.waterMat = new CGFappearance(this);
-        this.waterMat.setAmbient(0.2, 0.2, 0.2, 1);
+        this.waterMat.setAmbient(this.ambientLight, this.ambientLight,this.ambientLight, 1);
         this.waterMat.setDiffuse(0.2, 0.2, 0.6, 1);
         this.waterMat.setSpecular(1, 1, 1, 1);
         this.waterMat.setShininess(5);
