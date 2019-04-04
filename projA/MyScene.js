@@ -112,8 +112,8 @@ class MyScene extends CGFscene {
         this.floor = new MyQuad(this);
         this.floor.updateTexCoords([0, this.floor_scale_f, this.floor_scale_f, this.floor_scale_f, 0, 0, this.floor_scale_f, 0]);
 
-        this.river_scale_l = 20;
-        this.river_scale_w = 3;
+        this.river_scale_l = this.floor_scale_f;
+        this.river_scale_w = 4;
         this.river = new MyQuad(this);
         this.river.updateTexCoords([0, this.river_scale_w, this.river_scale_l, this.river_scale_w, 0, 0, this.river_scale_l, 0 ]);
 
@@ -262,9 +262,9 @@ class MyScene extends CGFscene {
 
         /* River */
         this.pushMatrix(),
-        this.translate(0,0.1,-5);
+        this.translate(0,0.1,-4);
         this.rotate(-Math.PI/2, 1, 0, 0);
-        this.scale(this.river_scale_l, 1, this.river_scale_w);
+        this.scale(this.river_scale_l, this.river_scale_w, 1);
         if (this.applyTextures) this.waterMat.apply();
         this.river.display();
         this.popMatrix();
