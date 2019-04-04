@@ -60,13 +60,14 @@ class MyScene extends CGFscene {
         this.lights[1].update();
 
         /* Campfire */
-        this.lights[2].setPosition(0, 0.2, 10, 1);
+        this.campfire_z = 5;
+        this.campfire_y = 1;
+        this.lights[2].setPosition(0, this.campfire_y, this.campfire_z, 1);
         this.lights[2].setDiffuse(1,0.25,0,1); /* Orange-ish */
         this.lights[2].setSpecular(1,0.25,0,1); /* Orange-ish */
         this.lights[2].setLinearAttenuation(0.05);
         this.lights[2].disable();
         this.lights[2].update();
-        //this.lights[2].setVisible(true);
     }
     updateTimeDayLight() {
 
@@ -107,6 +108,7 @@ class MyScene extends CGFscene {
         this.treesLine = new MyTreeRowPatch(this, [], []);
         this.skybox = new MyCubeMap(this);
         this.quad = new MyQuad(this);
+        this.campfire = new MyCampfire(this);
 
         this.floor_scale_f = 50;
         this.floor = new MyQuad(this);
@@ -269,7 +271,11 @@ class MyScene extends CGFscene {
         this.river.display();
         this.popMatrix();
 
-
+        /* Campfire */
+        this.pushMatrix();
+        this.translate(0, 0.2, this.campfire_z);
+        this.campfire.display();
+        this.popMatrix();
 
         // ---- END Primitive drawing section
     }
