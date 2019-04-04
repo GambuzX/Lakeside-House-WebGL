@@ -50,7 +50,7 @@ class MyCampfire extends CGFobject {
         let fire_scale = 0.3;
 
         this.scene.pushMatrix();
-        this.scene.translate(0, log_scale, 0);
+        this.scene.translate(0, log_scale/2, 0);
         this.scene.scale(fire_scale, fire_height, fire_scale);
         this.fireMat.apply();
         this.pyramid.display();
