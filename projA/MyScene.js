@@ -66,7 +66,7 @@ class MyScene extends CGFscene {
         this.lights[2].setPosition(0, this.campfire_y, this.campfire_z, 1);
         this.lights[2].setDiffuse(1,0.25,0,1); /* Orange-ish */
         this.lights[2].setSpecular(1,0.25,0,1); /* Orange-ish */
-        this.lights[2].setLinearAttenuation(0.05);
+        this.lights[2].setLinearAttenuation(2);
         this.lights[2].disable();
         this.lights[2].update();
     }
@@ -191,14 +191,14 @@ class MyScene extends CGFscene {
         // Apply default appearance
         this.setDefaultAppearance();
 
+        this.scale(this.zoom, this.zoom, this.zoom);
+
         /* Update lights */
         this.lights[0].update();
         this.lights[1].update();
         this.lights[2].update();
 
         // ---- BEGIN Primitive drawing section
-        
-        this.scale(this.zoom, this.zoom, this.zoom);
 
         /* Skybox */
         this.pushMatrix();
