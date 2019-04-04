@@ -125,7 +125,7 @@ class MyScene extends CGFscene {
         this.daytimeMat.setSpecular(0, 0, 0, 1);
         this.daytimeMat.setShininess(1);
         this.daytimeMat.loadTexture('textures/ely_lakes/daytime.png');
-        this.daytimeMat.setTextureWrap('REPEAT', 'REPEAT');
+        this.daytimeMat.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
         this.nightimeMat = new CGFappearance(this);
         this.nightimeMat.setAmbient(1, 1, 1, 1);
@@ -133,22 +133,22 @@ class MyScene extends CGFscene {
         this.nightimeMat.setSpecular(0, 0, 0, 1);
         this.nightimeMat.setShininess(1);
         this.nightimeMat.loadTexture('textures/ame_nebula/nebula.png');
-        this.nightimeMat.setTextureWrap('REPEAT', 'REPEAT');
+        this.nightimeMat.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
         this.timeDayMaterials = [this.daytimeMat, this.nightimeMat];
     }
     initFloorMaterials() {
         this.dirtMat = new CGFappearance(this);
-        this.dirtMat.setAmbient(0.1, 0.1, 0.1, 1);
-        this.dirtMat.setDiffuse(0.8, 0.8, 0.8, 1);
+        this.dirtMat.setAmbient(this.ambientLight, this.ambientLight,this.ambientLight, 1);
+        this.dirtMat.setDiffuse(1, 1, 1, 1);
         this.dirtMat.setSpecular(0, 0, 0, 1);
         this.dirtMat.setShininess(1);
         this.dirtMat.loadTexture('textures/floor/dirt-texture.jpg');
         this.dirtMat.setTextureWrap('REPEAT', 'REPEAT');
 
         this.grassMat = new CGFappearance(this);
-        this.grassMat.setAmbient(0.1, 0.1, 0.1, 1);
-        this.grassMat.setDiffuse(0.8, 0.8, 0.8, 1);
+        this.grassMat.setAmbient(this.ambientLight, this.ambientLight,this.ambientLight, 1);
+        this.grassMat.setDiffuse(1, 1, 1, 1);
         this.grassMat.setSpecular(0, 0, 0, 1);
         this.grassMat.setShininess(1);
         this.grassMat.loadTexture('textures/floor/grass-texture.jpg');
@@ -204,7 +204,7 @@ class MyScene extends CGFscene {
 
         /* Ground */
         this.pushMatrix();
-        this.scale(this.floor_scale_f,0,this.floor_scale_f);
+        this.scale(this.floor_scale_f,1,this.floor_scale_f);
         this.rotate(-90,1,0,0);
         if (this.applyTextures) this.floorMaterials[this.selectedFloorMaterial].apply();
         this.floor.display();
