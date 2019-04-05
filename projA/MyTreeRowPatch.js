@@ -1,14 +1,19 @@
 class MyTreeRowPatch extends CGFobject {
-    constructor(scene, treeTrunkText, treeTopTex) {
+    constructor(scene, treeTrunkTex, treeTopTex) {
         super(scene);
+        this.initTrees(treeTrunkTex, treeTopTex);
+    }
 
-        this.angle = 0;
+    initTrees(treeTrunkTex, treeTopTex) {
         this.trees = [];
         this.offsets = [];
+
+        /* Create trees */
         for (let i = 0; i < 6; ++i) {
-            this.trees.push(new MyTree(scene, 2,0.5,2,1.5,treeTrunkText,treeTopTex));
+            this.trees.push(new MyTree(this.scene, 2,0.5,2,1.5,treeTrunkTex,treeTopTex));
         }
 
+        /* Calculate offsets */
         for (let i = 0; i < 6; ++i) {
             this.offsets.push((Math.random()-0.5)*2);
         }
@@ -22,5 +27,9 @@ class MyTreeRowPatch extends CGFobject {
             this.trees[i].display();
             this.scene.popMatrix();
         }
+    }
+
+    enableNormalViz() {
+        for (let i = 0; i < this.trees.length; ++i) this.tress[i].enableNormalViz();
     }
 }

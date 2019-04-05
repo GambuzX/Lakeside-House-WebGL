@@ -34,11 +34,8 @@ class MyPrism extends CGFobject {
             /* TEXTURE COORDS */
             this.texCoords.push(0, 1, 1, 1, 0, 0);
             this.texCoords.push(1, 1, 1, 0, 0, 0);
-            // TODO VERIFY THIS!!!!
 
             /* NORMALS */
-            // edge1 = (caa - ca, 0 - 0, -saa + sa)
-            // edge2 = (ca - ca, 1 - 0, -sa + sa)
             var normal = [
             	saa-sa,
             	0,
@@ -62,15 +59,12 @@ class MyPrism extends CGFobject {
             this.normals.push(...normal);
             this.normals.push(...normal);
 
-
             /* INDICES */
             this.indices.push(6*i, (6*i+1) , (6*i+2) );
             this.indices.push((6*i+3), (6*i+4) , (6*i+5) );
 
             ang += ang_inc;
 		}
-
-		console.log(this.slices);
 
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();

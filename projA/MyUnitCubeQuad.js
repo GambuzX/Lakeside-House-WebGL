@@ -3,16 +3,12 @@ class MyUnitCubeQuad extends CGFobject {
 	constructor(scene) {
 		super(scene);
 		this.initBuffers();
-		//this.initTextures();
 
 		this.myQuad = new MyQuad(scene);
 	}
 
 	display() {
-		//this.setMineSide();
-		//this.mine.apply();
-		//this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
-
+		
 		// Front
 		this.scene.pushMatrix();
 		this.scene.translate(0,0,0.5);
@@ -48,9 +44,6 @@ class MyUnitCubeQuad extends CGFobject {
 		angle = -Math.PI / 2;
 		this.scene.translate(0, 0.5, 0);
 		this.scene.rotate(angle, 1, 0, 0);
-		//this.setMineTop();
-		//this.mine.apply();
-		//this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
 		this.myQuad.display();
 		this.scene.popMatrix();
 
@@ -59,11 +52,12 @@ class MyUnitCubeQuad extends CGFobject {
 		angle = Math.PI / 2;
 		this.scene.translate(0, -0.5, 0);
 		this.scene.rotate(angle, 1, 0, 0);
-		//this.setMineBottom();
-		//this.mine.apply();
-		//this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
 		this.myQuad.display();
 		this.scene.popMatrix();
 	}
+
+    enableNormalViz() {
+        this.myQuad.enableNormalViz();
+    }
 
 }

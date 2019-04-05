@@ -27,7 +27,6 @@ class MyCylinder extends CGFobject {
             /* TEXTURE COORDS */
             this.texCoords.push(i*1.0/this.slices, 1);
             this.texCoords.push(i*1.0/this.slices, 0);
-            // TODO VERIFY THIS!!!!
 
             /* INDICES */
             this.indices.push(i*2, (i*2+2) % (this.slices*2), (i*2+1) % (this.slices*2));
@@ -37,12 +36,8 @@ class MyCylinder extends CGFobject {
             this.normals.push(ca, 0,-sa);
             this.normals.push(ca, 0,-sa);
 
-
-
             ang += ang_inc;
 		}
-
-		console.log(this.slices);
 
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();

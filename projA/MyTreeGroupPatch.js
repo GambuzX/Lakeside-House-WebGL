@@ -1,22 +1,28 @@
 class MyTreeGroupPatch extends CGFobject {
-    constructor(scene, treeTrunkText, treeTopTex) {
+    constructor(scene, treeTrunkTex, treeTopTex) {
         super(scene);
+        this.initTrees(treeTrunkTex, treeTopTex);
+    }
+
+    initTrees(treeTrunkTex, treeTopTex) {
         this.trees = [];
         this.offsets = [];
 
+        /* Create trees */
         for (let i = 0; i < 3; ++i) {
             this.trees.push([]);
             for (let j = 0; j < 3; ++j) {
-                this.trees[i].push(new MyTree(scene, 2,0.5,2,1.25,treeTrunkText,treeTopTex));
+                this.trees[i].push(new MyTree(this.scene, 2,0.5,2,1.25,treeTrunkTex,treeTopTex));
             }
         }
 
+        /* Calculate offsets */
         for (let i = 0; i < 3; ++i) {
             this.offsets.push([]);
             for (let j = 0; j < 3; ++j) {
                 this.offsets[i].push([Math.random()*0.5-0.25, Math.random()*0.5-0.25]);
             }
-        }
+        }        
     }
 
     display() {
@@ -28,5 +34,9 @@ class MyTreeGroupPatch extends CGFobject {
                 this.scene.popMatrix();
             }
         }
+    }
+
+    enableNormalViz() {
+        for (let i = 0; i < this.trees.length; ++i) this.tress[i].enableNormalViz();
     }
 }

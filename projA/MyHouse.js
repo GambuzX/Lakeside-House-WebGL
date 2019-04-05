@@ -2,14 +2,14 @@ class MyHouse extends CGFobject {
 
 	constructor(scene) {
 		super(scene);
+
 		this.unitCube = new MyUnitCubeQuad(scene);
 		this.pyramid = new MyPyramid(scene, 4, 1);
 		this.tower_pyramid = new MyPyramid(scene, 10, 1);
 		this.prism = new MyPrism(scene, 10);
+
 		this.initHouseMaterials();
-
 	}
-
 
     initHouseMaterials() {
         this.wallMat = new CGFappearance(this.scene);

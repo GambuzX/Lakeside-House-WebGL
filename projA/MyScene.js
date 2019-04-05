@@ -21,8 +21,6 @@ class MyScene extends CGFscene {
         this.gl.depthFunc(this.gl.LEQUAL);
         this.enableTextures(true);
 
-        this.ambientLight = 0.3;
-
         // Initialize scene objects
         this.initObjects();
 
@@ -32,18 +30,20 @@ class MyScene extends CGFscene {
         this.initFloorMaterials();
         this.initRiverMaterials();
 
-        this.selectedTimeDay = 0;
-        this.timeDayMapper = {'Day Time' : 0, 'Night Time' : 1};
         // Objects connected to MyInterface
         this.applyTextures = true;
     }
     initLights() {
-        /* Ambient light */
-        this.setGlobalAmbientLight(0.3, 0.3, 0.3, 1.0);
 
+        /* Ambient light */
+        this.ambientLight = 0.3;
+        this.setGlobalAmbientLight(this.ambientLight, this.ambientLight, this.ambientLight, 1.0);
+
+        /* Sun and moon position */
         let lights_x = 500;
         let lights_y = 500;
         let lights_z = -500;
+
         /* Sun */
         this.lights[0].setPosition(lights_x, lights_y, lights_z, 1);
         this.lights[0].setDiffuse(1,0.9,0.4,1); /* Orange-ish */
@@ -139,6 +139,8 @@ class MyScene extends CGFscene {
         this.nightimeMat.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
         this.timeDayMaterials = [this.daytimeMat, this.nightimeMat];
+        this.selectedTimeDay = 0;
+        this.timeDayMapper = {'Day Time' : 0, 'Night Time' : 1};
     }
     initFloorMaterials() {
         this.dirtMat = new CGFappearance(this);
@@ -191,6 +193,7 @@ class MyScene extends CGFscene {
         // Apply default appearance
         this.setDefaultAppearance();
 
+        // Scene zoom
         this.scale(this.zoom, this.zoom, this.zoom);
 
         /* Update lights */
