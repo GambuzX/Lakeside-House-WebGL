@@ -218,7 +218,7 @@ class MyScene extends CGFscene {
         /* Ground */
         this.pushMatrix();
         this.scale(this.floor_scale_f,1,this.floor_scale_f);
-        this.rotate(-90,1,0,0);
+        this.rotate(-Math.PI/2,1,0,0);
         this.floorMaterials[this.selectedFloorMaterial].apply();
         this.floor.display();
         this.popMatrix();

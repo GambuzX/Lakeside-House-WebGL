@@ -9,7 +9,7 @@ class MyCampfire extends CGFobject {
 
 	initCampfireMaterials() {
                 this.logMat = new CGFappearance(this.scene);
-                this.logMat.setAmbient(0.6,0.6,0.6);
+                this.logMat.setAmbient(this.scene.ambientLight, this.scene.ambientLight, this.scene.ambientLight, 1);
                 this.logMat.setDiffuse(1,1,1,1);
                 this.logMat.setSpecular(0.1,0.1,0.1,1);
                 this.logMat.setShininess(1);
@@ -17,7 +17,7 @@ class MyCampfire extends CGFobject {
                 this.logMat.setTextureWrap('REPEAT', 'REPEAT');
 
                 this.fireMat = new CGFappearance(this.scene);
-                this.fireMat.setAmbient(0.9,0.9,0.9);
+                this.fireMat.setAmbient(0.9,0.9,0.9, 1);
                 this.fireMat.setDiffuse(1,1,1,1);
                 this.fireMat.setSpecular(1,1,1,1);
                 this.fireMat.setShininess(1);
