@@ -105,6 +105,7 @@ class MyScene extends CGFscene {
         this.house = new MyHouse(this);
         this.voxelHill1 = new MyVoxelHill(this, 4);
         this.voxelHill2 = new MyVoxelHill(this, 8);
+        this.voxelHill3 = new MyVoxelHill(this, 6);
         this.treesGroup = new MyTreeGroupPatch(this, [], []);
         this.treesLine = new MyTreeRowPatch(this, [], []);
         this.skybox = new MyCubeMap(this);
@@ -246,6 +247,13 @@ class MyScene extends CGFscene {
         this.voxelHill2.display();
         this.popMatrix();
 
+        let hill3_scale = 1;
+        this.pushMatrix();
+        this.translate(-18, 0, 5);
+        this.scale(hill3_scale, hill3_scale, hill3_scale);
+        this.voxelHill3.display();
+        this.popMatrix();
+
 
         /* Tree Groups */
         this.pushMatrix();
@@ -254,8 +262,29 @@ class MyScene extends CGFscene {
         this.popMatrix();
 
         this.pushMatrix();
-        this.translate(12,0,18);
+        this.translate(11,0,18);
         this.rotate(Math.PI/2, 0, 1, 0);
+        this.treesGroup.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(-20,0,-18);
+        this.treesGroup.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(11,0,8);
+        this.treesGroup.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(20,0,18);
+        this.rotate(Math.PI, 0, 1, 0);
+        this.treesGroup.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(20,0,8);
         this.treesGroup.display();
         this.popMatrix();
 
@@ -268,6 +297,18 @@ class MyScene extends CGFscene {
         this.pushMatrix();
         this.translate(5,0,10);
         this.rotate(Math.PI, 0, 1, 0);
+        this.treesLine.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(-7,0,-18);
+        this.rotate(Math.PI/2, 0, 1, 0);
+        this.treesLine.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(15,0,0);
+        this.rotate(-Math.PI/2, 0, 1, 0);
         this.treesLine.display();
         this.popMatrix();
 
