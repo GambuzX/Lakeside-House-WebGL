@@ -22,6 +22,7 @@ class MyScene extends CGFscene {
         this.enableTextures(true);
 
         // Initialize scene objects
+        this.skyboxScale = 100;
         this.initObjects();
 
         // Initialize materials
@@ -127,7 +128,7 @@ class MyScene extends CGFscene {
         this.daytimeMat.setDiffuse(0, 0, 0, 1);
         this.daytimeMat.setSpecular(0, 0, 0, 1);
         this.daytimeMat.setShininess(1);
-        this.daytimeMat.loadTexture('textures/ely_lakes/daytime.png');
+        this.daytimeMat.loadTexture('textures/ame_siege/ame_siege.png');
         this.daytimeMat.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
         this.nightimeMat = new CGFappearance(this);
@@ -208,7 +209,7 @@ class MyScene extends CGFscene {
         if (this.selectedTimeDay == 0) {
             this.translate(0,20,0);
         }
-        this.scale(100, 100, 100);
+        this.scale(this.skyboxScale, this.skyboxScale, this.skyboxScale);
         this.timeDayMaterials[this.selectedTimeDay].apply();
         this.skybox.display();
         this.popMatrix();
