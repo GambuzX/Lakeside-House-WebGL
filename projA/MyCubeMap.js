@@ -3,7 +3,7 @@ class MyCubeMap extends CGFobject {
         super(scene);
         this.initBuffers();
     }
-    
+
     initBuffers() {
         this.vertices = [
             // Top face
@@ -39,37 +39,19 @@ class MyCubeMap extends CGFobject {
         ];
 
         this.texCoords = [
-            //Top face
-            0.25,0.0,
-            0.5,0.0,
-            0.5,0.25,
-            0.25,0.25,
-            //Bottom face
-            0.25,0.75,
-            0.5,0.75,
-            0.5,0.5,
-            0.25,0.5,
-            //Front face
-            1.0,0.5,
-            0.75,0.5,
-            0.75,0.25,
-            1.0,0.25,
-            //Back face
-            0.25,0.5,
-            0.5,0.5,
-            0.5,0.25,
-            0.25,0.25,
-            //Left face
-            0.25,0.5,
-            0.0,0.5,
-            0.0,0.25,
-            0.25,0.25,
-            //Right face
-            0.5,0.5,
-            0.75,0.5,
-            0.75,0.25,
-            0.5,0.25
-            
+            // Top face
+            0.25, 0.0, 0.5, 0.0, 0.5, 0.25, 0.25, 0.25,
+            // Bottom face
+            0.25, 0.75, 0.5, 0.75, 0.5, 0.5, 0.25, 0.5,
+            // Front face
+            1.0, 0.5, 0.75, 0.5, 0.75, 0.25, 1.0, 0.25,
+            // Back face
+            0.25, 0.5, 0.5, 0.5, 0.5, 0.25, 0.25, 0.25,
+            // Left face
+            0.25, 0.5, 0.0, 0.5, 0.0, 0.25, 0.25, 0.25,
+            // Right face
+            0.5, 0.5, 0.75, 0.5, 0.75, 0.25, 0.5, 0.25
+
         ];
 
         this.indices = [
