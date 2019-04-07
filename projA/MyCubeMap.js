@@ -3,11 +3,7 @@ class MyCubeMap extends CGFobject {
         super(scene);
         this.initBuffers();
     }
-
-    updateBuffers() {
-        return;
-    }
-
+    
     initBuffers() {
         this.vertices = [
             // Top face

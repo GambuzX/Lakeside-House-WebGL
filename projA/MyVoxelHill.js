@@ -3,16 +3,18 @@ class MyVoxelHill extends CGFobject {
 		super(scene);
 		this.height = height;
 		this.cube = new MyUnitCubeQuad(scene);
+		this.initMaterials();
+	}
 
-        this.material = new CGFappearance(scene);
-        this.material.setAmbient(scene.ambientLight,scene.ambientLight,scene.ambientLight, 1);
-        this.material.setDiffuse(1,1,1,1);
+	initMaterials() {
+        this.material = new CGFappearance(this.scene);
+        this.material.setAmbient(this.scene.ambientLight,this.scene.ambientLight,this.scene.ambientLight, 1);
+        this.material.setDiffuse(0.8,0.8,0.8,1);
         this.material.setSpecular(1,1,1,1);
         this.material.setShininess(30);
         this.material.loadTexture('textures/marble/marble.jpg');
         this.material.setTextureWrap('REPEAT', 'REPEAT');
 	}
-
 
 	display() {
         this.material.apply();
@@ -30,8 +32,8 @@ class MyVoxelHill extends CGFobject {
 			for (let curr_x = start_x; curr_x <= end_x; curr_x += cube_size) {
 				for (let curr_z = start_z; curr_z <= end_z; curr_z += cube_size) {
 
-					/* Remove coment below to fully draw first layer */
-					if (/*curr_y != 0.5 &&*/ curr_x != start_x && curr_x != end_x && curr_z != start_z && curr_z != end_z) continue;
+					/* Do not draw inner cubes */
+					if (curr_x != start_x && curr_x != end_x && curr_z != start_z && curr_z != end_z) continue;
 
 					this.scene.pushMatrix();
 					this.scene.translate(curr_x, curr_y, curr_z);

@@ -22,7 +22,6 @@ class MyScene extends CGFscene {
         this.enableTextures(true);
 
         // Initialize scene objects
-        this.skyboxScale = 100;
         this.initObjects();
 
         // Initialize materials
@@ -109,9 +108,12 @@ class MyScene extends CGFscene {
         this.voxelHill3 = new MyVoxelHill(this, 6);
         this.treesGroup = new MyTreeGroupPatch(this, [], []);
         this.treesLine = new MyTreeRowPatch(this, [], []);
-        this.skybox = new MyCubeMap(this);
-        this.quad = new MyQuad(this);
+
+        this.campfire_height = 0.2;
         this.campfire = new MyCampfire(this);
+
+        this.skyboxScale = 100;
+        this.skybox = new MyCubeMap(this);
 
         this.floor_scale_f = 50;
         this.floor = new MyQuad(this);
@@ -206,10 +208,10 @@ class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
 
         /* Skybox */
+        let day_skybox_offset = 5;
         this.pushMatrix();
-        if (this.selectedTimeDay == 0) {
-            this.translate(0,20,0);
-        }
+        if (this.selectedTimeDay == 0)
+            this.translate(0, day_skybox_offset, 0);
         this.scale(this.skyboxScale, this.skyboxScale, this.skyboxScale);
         this.timeDayMaterials[this.selectedTimeDay].apply();
         this.skybox.display();
@@ -222,8 +224,6 @@ class MyScene extends CGFscene {
         this.floorMaterials[this.selectedFloorMaterial].apply();
         this.floor.display();
         this.popMatrix();
-
-        this.setDefaultAppearance();
 
         /* House */
         let house_scale = 2;
@@ -324,7 +324,7 @@ class MyScene extends CGFscene {
 
         /* Campfire */
         this.pushMatrix();
-        this.translate(0, 0.2, this.campfire_z);
+        this.translate(0, this.campfire_height/2, this.campfire_z);
         this.campfire.display();
         this.popMatrix();
 
