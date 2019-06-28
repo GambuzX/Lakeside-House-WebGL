@@ -1,4 +1,4 @@
-# Project A CGRA :evergreen_tree::house_with_garden::evergreen_tree:
+# Lakeside House WebGL :evergreen_tree::house_with_garden::evergreen_tree:
 WebGL scene of a lakeside house near a forest and mountains.
 
 
@@ -17,16 +17,21 @@ WebGL scene built using WebCGF that contains:
 **Project specifications can be seen in 'project_a.pdf'**
 
 ### Screenshots
-![Scene Day](https://github.com/GambuzX/Project_A_CGRA/blob/master/screenshots/day.png) *Scene in day light*
-![Scene Night](https://github.com/GambuzX/Project_A_CGRA/blob/master/screenshots/night.png) *Scene in night light*
-![Camp fire](https://github.com/GambuzX/Project_A_CGRA/blob/master/screenshots/campfire.png) *Camp fire*
-![No textures](https://github.com/GambuzX/Project_A_CGRA/blob/master/screenshots/notextures.png) *Scene without any texture*
+![Scene Day](https://github.com/GambuzX/Lakeside-House-WebGL/blob/master/screenshots/day.png) *Scene in day light*
+![Scene Night](https://github.com/GambuzX/Lakeside-House-WebGL/blob/master/screenshots/night.png) *Scene in night light*
+![Camp fire](https://github.com/GambuzX/Lakeside-House-WebGL/blob/master/screenshots/campfire.png) *Camp fire*
+![No textures](https://github.com/GambuzX/Lakeside-House-WebGL/blob/master/screenshots/notextures.png) *Scene without any texture*
 
 
 ### Technologies and Software Used
 * Javascript
 * WebGL
 * WebCGF
+
+### Install Instructions
+Download this repository, start a server on its root, access it and navigate to 'projA'. 
+
+If you have python you can easily start a server in port 8080 with 'python -m http.server 8080'. After that open your browser and go to 'localhost:8080'.
 
 ### Curricular Unit Info
 * **Date:** 2nd Year, 2nd Semester, 2018/2019
