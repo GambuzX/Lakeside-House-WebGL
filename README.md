@@ -17,10 +17,10 @@ WebGL scene built using WebCGF that contains:
 **Project specifications can be seen in 'project_a.pdf'**
 
 ### Screenshots
-![Scene Day](https://github.com/GambuzX/Project_A/blob/master/screenshots/day.png) *Scene in day light*
-![Scene Night](https://github.com/GambuzX/Project_A/blob/master/screenshots/night.png) *Scene in night light*
-![Camp fire](https://github.com/GambuzX/Project_A/blob/master/screenshots/campfire.png) *Camp fire*
-![No textures](https://github.com/GambuzX/Project_A/blob/master/screenshots/notextures.png) *Scene without any texture*
+![Scene Day](https://github.com/GambuzX/Project_A_CGRA/blob/master/screenshots/day.png) *Scene in day light*
+![Scene Night](https://github.com/GambuzX/Project_A_CGRA/blob/master/screenshots/night.png) *Scene in night light*
+![Camp fire](https://github.com/GambuzX/Project_A_CGRA/blob/master/screenshots/campfire.png) *Camp fire*
+![No textures](https://github.com/GambuzX/Project_A_CGRA/blob/master/screenshots/notextures.png) *Scene without any texture*
 
 
 ### Technologies and Software Used
